@@ -6,14 +6,16 @@ const heroRoleWord = document.getElementById('hero-role-word');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (heroRoleWord && !prefersReducedMotion) {
-  const roles = ['Designer', 'Bioengineer', 'Both'];
+  // Figma's "Both" variant renders as "Designer • Bioengineer" (teal dot divider),
+  // not the literal word "Both" — matched here via get_design_context on node 309:7343.
+  const roles = ['Designer', 'Bioengineer', 'Designer<span class="hero-role-dot" aria-hidden="true"></span>Bioengineer'];
   let roleIndex = 0;
 
   setInterval(() => {
     heroRoleWord.classList.add('is-swapping');
     setTimeout(() => {
       roleIndex = (roleIndex + 1) % roles.length;
-      heroRoleWord.textContent = roles[roleIndex];
+      heroRoleWord.innerHTML = roles[roleIndex];
       heroRoleWord.classList.remove('is-swapping');
     }, 500); // matches the CSS transition duration
   }, 2800);

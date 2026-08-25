@@ -97,7 +97,7 @@ input:focus-visible {
   padding: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 20px;
+  font-size: clamp(18px, 2vw, 28px); /* Figma nav component: 28px DM Sans SemiBold */
 }
 
 .site-nav a {
@@ -209,6 +209,16 @@ input:focus-visible {
 .hero-role-word.is-swapping {
   opacity: 0;
   transform: translateY(8px);
+}
+
+.hero-role-dot {
+  display: inline-block;
+  width: 0.3em;
+  height: 0.3em;
+  margin: 0 0.2em;
+  border-radius: 50%;
+  background: var(--color-accent-teal);
+  vertical-align: middle;
 }
 
 .hero-description {
