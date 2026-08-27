@@ -1,0 +1,111 @@
+{
+  "Color - Background": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9607843160629272,
+        0.9411764740943909,
+        0.9019607901573181
+      ],
+      "alpha": 1,
+      "hex": "#F5F0E6"
+    },
+    "$description": "Used as a background color, and as text color on a background that is darker",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:351:7342",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Color - Text": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.0784313753247261,
+        0.15294118225574493
+      ],
+      "alpha": 1,
+      "hex": "#001427"
+    },
+    "$description": "Used for all text",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:351:7343",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Color - Button": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3490196168422699,
+        0.09803921729326248,
+        0.04313725605607033
+      ],
+      "alpha": 1,
+      "hex": "#59190B"
+    },
+    "$description": "Used for button colors",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:351:7344",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Color - Highlight": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.18431372940540314,
+        0.43529412150382996,
+        0.4156862795352936
+      ],
+      "alpha": 1,
+      "hex": "#2F6F6A"
+    },
+    "$description": "Used to highlight selected elements",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:351:7345",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Font": {
+    "Family": {
+      "Headings": {
+        "$type": "string",
+        "$value": "DM Sans",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:385:609",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.type": "string"
+        }
+      },
+      "Body": {
+        "$type": "string",
+        "$value": "Spectral",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:387:612",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.type": "string"
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

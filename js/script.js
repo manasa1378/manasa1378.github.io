@@ -41,18 +41,24 @@ if (navToggle && siteNav) {
 }
 
 // Highlight the current section's nav link while scrolling
-const sections = document.querySelectorAll('main section[id], header');
 const navLinks = document.querySelectorAll('.site-nav a');
 
 const setActiveLink = () => {
   let currentId = 'top';
   const scrollY = window.scrollY + 120;
 
-  document.querySelectorAll('section[id]').forEach(section => {
+  // The footer (id="contact") is a <footer>, not a <section> — include it
+  // explicitly, otherwise "Contact" never highlights when scrolled to it.
+  document.querySelectorAll('main section[id], footer[id]').forEach(section => {
     if (scrollY >= section.offsetTop) {
       currentId = section.id;
     }
   });
+
+  // Belt-and-braces: if the page is scrolled all the way to the bottom,
+  // force "Contact" active even if the footer is short of the 120px offset.
+  const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  if (atBottom) currentId = 'contact';
 
   navLinks.forEach(link => {
     const targetId = link.getAttribute('href').replace('#', '');

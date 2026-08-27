@@ -1,0 +1,35 @@
+Functional changes
+Homepage
+Reduce the top menu bar width to accommodate the “Work with me” button without getting cut off
+The text on the about me section needs to wrap around the image, leaving a 40px gap
+The border graphic at the end of the homepage needs to be offset from the footer section by 80px, currently it is too close to the footer
+The footer section’s elements are not aligned, the disclaimer text box needs to line up on the right with the menu options and it needs to be big enough to line up with the “get in touch” contact form box.
+Footer section needs to have another tab for navigating to the About section
+Floating top menu bar needs to highlight the “Contact” tab when the page is scrolled down completely to the footer section
+The website needs to have a margin of 80px on both the left and the right across all the pages, and the text, content, and images to be aligned accordingly
+
+Elleloom
+Hero images are missing 
+Remove extra subtitle text from all pages
+“The Problem” section has been split into “Objective” and “The Problem” and a chunk of text is missing and the problem image has been cut off 
+Border graphic is completely missing
+My role and user research section has an image that needs to be moved to the next section
+Images are cut off and cropped
+
+Premier League Soccer
+Hero images are missing
+Remove extra subtitle text
+Images are cropped
+Border graphic is missing
+
+
+Mia Health
+Hero images are missing
+Remove extra subtitle text
+Images are cropped
+Solution images are missing
+
+Vanity changes
+Kolam graphic needs to have more opacity 
+Kolam graphic on about me section is also almost invisible and needs to be bigger
+Border graphic looks compressed - it needs to be the same dimensions as the actual image

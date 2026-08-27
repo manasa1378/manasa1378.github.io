@@ -82,6 +82,7 @@ input:focus-visible {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 32px;
   height: 100px;
 }
 
@@ -92,12 +93,19 @@ input:focus-visible {
 .site-nav ul {
   list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 28px; /* reduced from 40px so the nav-cta button fits without wrapping/cutoff */
   margin: 0;
   padding: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(18px, 2vw, 28px); /* Figma nav component: 28px DM Sans SemiBold */
+  font-size: clamp(16px, 1.6vw, 24px); /* trimmed from Figma's 28px to make room for the nav-cta button */
+}
+
+.nav-cta {
+  font-size: 15px;
+  padding: 10px 18px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .site-nav a {
@@ -111,7 +119,7 @@ input:focus-visible {
   border-bottom-color: var(--color-accent-teal);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 860px) { /* raised from 700px — extra width needed once nav-cta sits next to the nav links */
   .nav-toggle {
     display: inline-flex;
     margin-left: auto;
@@ -120,6 +128,8 @@ input:focus-visible {
     cursor: pointer;
     padding: 8px;
   }
+
+  .nav-cta { display: none; } /* the mobile dropdown already has a Contact link; avoid crowding the bar */
   .nav-toggle span,
   .nav-toggle span::before,
   .nav-toggle span::after {
@@ -173,7 +183,7 @@ input:focus-visible {
   right: -220px;
   width: 720px;
   height: 720px;
-  opacity: 0.18;
+  opacity: 0.3; /* was 0.18 — too faint to read as a motif */
   z-index: 0;
   pointer-events: none;
 }
@@ -254,15 +264,18 @@ input:focus-visible {
    Kolam divider (decorative)
    ========================= */
 .kolam-divider {
-  height: 64px;
+  height: 80px; /* matches Figma's Border frame (80px tall) */
   margin: 0 0;
-  /* Drop your exported Kolam border tile in as images/kolam-border-tile.png.
-     (CSS can't fall back automatically — if you don't have the real export yet,
-     temporarily point this at images/kolam-border-tile-fallback.svg instead.) */
   background-image: url('../images/kolam-border-tile.png');
   background-repeat: repeat-x;
-  background-size: 160px 64px;
+  /* "auto" preserves the tile's native aspect ratio (993x240) instead of
+     stretching/squashing it into an arbitrary box — fixes the compressed look. */
+  background-size: auto 80px;
   opacity: 0.85;
+}
+
+.kolam-divider--end {
+  margin-bottom: 80px; /* offsets the border graphic from the section that follows it */
 }
 
 /* =========================
@@ -370,22 +383,24 @@ section.page-section {
 
 .about-bg-motif {
   position: absolute;
-  left: -260px;
-  top: 120px;
-  width: 640px;
-  height: 640px;
-  opacity: 0.18;
+  left: -320px;
+  top: 60px;
+  width: 960px;  /* was 640px — nearly invisible at that size, closer to Figma's 1000px */
+  height: 960px;
+  opacity: 0.32; /* was 0.18 */
   z-index: 0;
   pointer-events: none;
 }
 
 .about .wrap { position: relative; z-index: 1; }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 48px;
-  align-items: start;
+.about-grid::after { content: ""; display: table; clear: both; }
+
+.about-photo-wrap {
+  float: right;
+  width: 380px;
+  margin: 0 0 40px 40px; /* 40px gap between the photo and the text wrapping around it */
+  text-align: center;
 }
 
 .about-text p {
@@ -394,8 +409,6 @@ section.page-section {
 }
 
 .about-text em { font-style: italic; }
-
-.about-photo-wrap { text-align: center; }
 
 .about-photo {
   aspect-ratio: 432 / 768;
@@ -413,6 +426,7 @@ section.page-section {
 }
 
 .about-fulltext {
+  clear: both; /* starts below the floated photo instead of wrapping around it too */
   margin-top: 48px;
   font-size: clamp(18px, 2.2vw, 28px);
 }
@@ -420,8 +434,7 @@ section.page-section {
 .about-fulltext p { margin: 0 0 24px; }
 
 @media (max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-photo-wrap { max-width: 320px; margin: 0 auto; }
+  .about-photo-wrap { float: none; width: auto; max-width: 320px; margin: 0 auto 32px; }
 }
 
 /* =========================
@@ -464,7 +477,7 @@ section.page-section {
 
 .footer-columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 6fr 5fr; /* matches Figma's contact-form/disclaimer width ratio (640/537) */
   gap: 40px;
 }
 
@@ -509,7 +522,8 @@ section.page-section {
   font-style: italic;
   font-size: 16px;
   opacity: 0.9;
-  max-width: 480px;
+  /* no max-width: let it fill its column so its right edge lines up with the
+     nav menu above and the contact-form box beside it, instead of hugging the left */
 }
 
 @media (max-width: 700px) {
@@ -610,11 +624,23 @@ section.page-section {
   margin-top: 32px;
   border-radius: 4px;
   overflow: hidden;
-  aspect-ratio: 16/9;
   background: #E4DCCB;
 }
 
-.case-image img { width: 100%; height: 100%; object-fit: cover; }
+/* No forced aspect-ratio/object-fit:cover — these are phone-mockup and
+   screenshot images at very different native ratios (portrait, wide chart,
+   etc.); forcing them into a 16:9 box was cropping/cutting them off. Let
+   each image keep its own proportions at full column width instead. */
+.case-image img { width: 100%; height: auto; display: block; }
+
+.case-hero-image {
+  margin-top: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #E4DCCB;
+}
+
+.case-hero-image img { width: 100%; height: auto; display: block; }
 
 .case-image-caption {
   font-family: var(--font-body);
