@@ -18,9 +18,13 @@
   --font-display: 'DM Sans', sans-serif;   /* headings, buttons, nav */
   --font-body: 'Spectral', serif;          /* paragraphs, captions */
 
-  /* Layout */
-  --max-width: 1280px;
-  --gutter: 80px;
+  /* Layout — Figma's canvas is 1440x1089. The 80px side margin there is a
+     5.5556% ratio (80/1440); --gutter reproduces that ratio in vw so the
+     margin (and everything sized off it) scales with the viewport instead
+     of pinning to a fixed max-width and just leaving dead space on larger
+     screens. Floored for small phones, ceilinged so it doesn't balloon on
+     ultra-wide monitors. */
+  --gutter: clamp(24px, 5.5556vw, 160px);
   --gutter-mobile: 24px;
   --section-gap: 160px;
 }
@@ -45,7 +49,10 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
 .wrap {
-  max-width: var(--max-width);
+  /* No max-width cap: content fills 100% minus the two --gutter margins at
+     any viewport size, preserving Figma's 1280/1440 (88.9%) content-to-
+     canvas ratio instead of pinning to 1280px and centering blank space
+     around it on screens wider than 1440px. */
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
@@ -82,8 +89,7 @@ input:focus-visible {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 32px;
-  height: 100px;
+  height: 80px; /* was 100px — trimmed to leave more vertical room for the hero at 1440x1089 */
 }
 
 .nav-toggle {
@@ -93,19 +99,12 @@ input:focus-visible {
 .site-nav ul {
   list-style: none;
   display: flex;
-  gap: 28px; /* reduced from 40px so the nav-cta button fits without wrapping/cutoff */
+  gap: 40px;
   margin: 0;
   padding: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(16px, 1.6vw, 24px); /* trimmed from Figma's 28px to make room for the nav-cta button */
-}
-
-.nav-cta {
-  font-size: 15px;
-  padding: 10px 18px;
-  white-space: nowrap;
-  flex-shrink: 0;
+  font-size: clamp(18px, 2vw, 28px); /* Figma nav component: 28px DM Sans SemiBold */
 }
 
 .site-nav a {
@@ -119,7 +118,7 @@ input:focus-visible {
   border-bottom-color: var(--color-accent-teal);
 }
 
-@media (max-width: 860px) { /* raised from 700px — extra width needed once nav-cta sits next to the nav links */
+@media (max-width: 700px) {
   .nav-toggle {
     display: inline-flex;
     margin-left: auto;
@@ -129,7 +128,6 @@ input:focus-visible {
     padding: 8px;
   }
 
-  .nav-cta { display: none; } /* the mobile dropdown already has a Contact link; avoid crowding the bar */
   .nav-toggle span,
   .nav-toggle span::before,
   .nav-toggle span::after {
@@ -261,7 +259,11 @@ input:focus-visible {
 
 .btn:hover { background: #431307; transform: translateY(-1px); }
 
-.hero-cta { margin-top: 24px; }
+.hero-cta {
+  display: flex;
+  justify-content: flex-end; /* matches Figma's Call to Action Button — bottom-right of the hero, not left-aligned under the copy */
+  margin-top: 24px;
+}
 
 /* =========================
    Kolam divider (decorative)
