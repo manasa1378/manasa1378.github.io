@@ -179,11 +179,13 @@ input:focus-visible {
 
 .hero-bg-motif {
   position: absolute;
-  top: -120px;
-  right: -220px;
-  width: 720px;
-  height: 720px;
-  opacity: 0.3; /* was 0.18 — too faint to read as a motif */
+  top: 20px;
+  right: 20px;
+  width: 560px;
+  height: 560px;
+  max-width: calc(100% - 40px);  /* stay inside .hero on narrow viewports too */
+  max-height: calc(100% - 40px);
+  opacity: 0.14; /* was 0.3 — competed too much with the text sitting on top of it */
   z-index: 0;
   pointer-events: none;
 }
@@ -383,11 +385,13 @@ section.page-section {
 
 .about-bg-motif {
   position: absolute;
-  left: -320px;
-  top: 60px;
-  width: 960px;  /* was 640px — nearly invisible at that size, closer to Figma's 1000px */
-  height: 960px;
-  opacity: 0.32; /* was 0.18 */
+  left: 20px;
+  top: 40px;
+  width: 720px;
+  height: 720px;
+  max-width: calc(100% - 40px);  /* stay inside .about on narrow viewports too — was bleeding off the left edge and getting clipped */
+  max-height: calc(100% - 40px);
+  opacity: 0.14; /* was 0.32 — was overpowering the text on top of it */
   z-index: 0;
   pointer-events: none;
 }
