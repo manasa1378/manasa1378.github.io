@@ -177,12 +177,10 @@ input:focus-visible {
 
 .hero-bg-motif {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 560px;
-  height: 560px;
-  max-width: calc(100% - 40px);  /* stay inside .hero on narrow viewports too */
-  max-height: calc(100% - 40px);
+  top: -60px;
+  right: -80px; /* bleeds off the top-right corner to the true page edge, on purpose — .hero's overflow:hidden clips it cleanly there */
+  width: 640px;
+  height: 640px;
   object-fit: contain; /* the source file is a true square now, but this guards against any future non-square export */
   opacity: 0.14; /* was 0.3 — competed too much with the text sitting on top of it */
   z-index: 0;
@@ -271,10 +269,11 @@ input:focus-visible {
 .kolam-divider {
   height: 80px; /* matches Figma's Border frame (80px tall) */
   margin: 0 0;
+  padding: 0 var(--gutter); /* keep the pattern within the same left/right margin as the rest of the page, not full-bleed */
   background-image: url('../images/kolam-border-tile.png');
-  /* "round" scales the tile so a whole number fit edge-to-edge — repeat-x
-     was slicing a partial tile off at the right end of the bar. */
-  background-repeat: round;
+  background-repeat: repeat-x; /* tiles naturally and cuts off cleanly at the margin, rather than stretching to avoid a cut */
+  background-clip: content-box;   /* ...and don't paint into the margin itself */
+  background-origin: content-box;
   /* "auto" preserves the tile's native aspect ratio (993x240) instead of
      stretching/squashing it into an arbitrary box — fixes the compressed look. */
   background-size: auto 80px;
@@ -392,12 +391,10 @@ section.page-section {
 
 .about-bg-motif {
   position: absolute;
-  left: 20px;
+  left: -220px; /* bleeds off the left edge to the true page edge, on purpose — matches Figma, .about's overflow:hidden clips it cleanly there */
   top: 40px;
   width: 720px;
   height: 720px;
-  max-width: calc(100% - 40px);  /* stay inside .about on narrow viewports too — was bleeding off the left edge and getting clipped */
-  max-height: calc(100% - 40px);
   object-fit: contain; /* the source file is a true square now, but this guards against any future non-square export */
   opacity: 0.14; /* was 0.32 — was overpowering the text on top of it */
   z-index: 0;
@@ -418,6 +415,15 @@ section.page-section {
 .about-text p {
   font-size: clamp(18px, 2.2vw, 28px);
   margin: 0 0 24px;
+}
+
+/* The floated photo's bottom edge can land mid-paragraph, which forces
+   whatever line is at that height to wrap early against the shrinking
+   float width (short line, ragged, mid-sentence) even though the text
+   below has full width again. Clearing the float before the last
+   paragraph keeps that one always full-width and glitch-free. */
+.about-text p:last-child {
+  clear: both;
 }
 
 .about-text em { font-style: italic; }
@@ -527,6 +533,13 @@ section.page-section {
   padding: 0 24px;
   cursor: pointer;
   border-radius: 0 2px 2px 0;
+}
+
+/* Invisible duplicate of .footer-contact-title, used only as a spacer so
+   .footer-note lines up with the form row instead of the "Get in touch!"
+   heading above it. */
+.footer-spacer {
+  visibility: hidden;
 }
 
 .footer-note {
