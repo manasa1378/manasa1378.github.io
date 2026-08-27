@@ -260,7 +260,7 @@ input:focus-visible {
 .hero-cta {
   display: flex;
   justify-content: flex-end; /* matches Figma's Call to Action Button — bottom-right of the hero, not left-aligned under the copy */
-  margin-top: 24px;
+  margin-top: 8px; /* was 24px — nudged up a little */
 }
 
 /* =========================
@@ -391,7 +391,7 @@ section.page-section {
 
 .about-bg-motif {
   position: absolute;
-  left: -220px; /* bleeds off the left edge to the true page edge, on purpose — matches Figma, .about's overflow:hidden clips it cleanly there */
+  left: 0; /* flush with the true page edge — past the content margin, but the full square stays on-screen (uncut) */
   top: 40px;
   width: 720px;
   height: 720px;
