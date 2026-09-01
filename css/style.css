@@ -92,6 +92,28 @@ input:focus-visible {
   height: 80px; /* was 100px — trimmed to leave more vertical room for the hero at 1440x1089 */
 }
 
+/* Case-study pages show a name/logo at the left of the bar; homepage doesn't,
+   so this only overrides justify-content where that modifier is present. */
+.site-header--with-brand .wrap {
+  justify-content: space-between;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2.2vw, 30px); /* slightly larger than the nav's 28px max */
+  color: var(--color-accent-teal); /* same color as a highlighted nav link */
+  white-space: nowrap;
+}
+
+.site-brand-icon {
+  height: 28px;
+  width: auto;
+}
+
 .nav-toggle {
   display: none;
 }
