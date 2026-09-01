@@ -3,7 +3,7 @@
    Design tokens pulled directly from Figma (Dev Mode)
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 
 :root {
   /* Colors */
@@ -704,6 +704,22 @@ section.page-section {
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   margin-top: 32px;
+}
+
+/* Text-wraps-around-image pattern (same approach as the About section's
+   photo), used where an image sits to the right with paragraphs flowing
+   around it instead of stacking full-width below the text. */
+.case-float::after { content: ""; display: table; clear: both; }
+
+.case-image--float {
+  float: right;
+  width: 340px;
+  max-width: 100%;
+  margin: 0 0 24px 40px;
+}
+
+@media (max-width: 700px) {
+  .case-image--float { float: none; width: auto; margin: 0 0 24px; }
 }
 
 @media (max-width: 700px) {
