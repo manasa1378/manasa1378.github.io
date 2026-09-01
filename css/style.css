@@ -719,14 +719,20 @@ section.page-section {
 
 .case-image--float {
   flex: 0 0 340px;
-  margin-top: 0; /* override .case-image's margin-top so both columns start flush at the top */
   display: flex;
   flex-direction: column;
 }
 
-.case-image--float img {
+/* The caption sits as a sibling here, not inside .case-image, so it renders
+   on the page background instead of .case-image's own #E4DCCB fill —
+   matching every other caption on the site. */
+.case-image--float .case-image {
   flex: 1 1 auto;
   min-height: 0;
+  margin-top: 0; /* override .case-image's margin-top so both columns start flush at the top */
+}
+
+.case-image--float .case-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
