@@ -645,10 +645,10 @@ section.page-section {
 .case-section-label {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 32px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-accent-brick);
+  color: #001427;
   margin: 0 0 16px;
 }
 
