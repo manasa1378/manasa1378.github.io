@@ -707,20 +707,24 @@ section.page-section {
    the image fills its column via object-fit:cover (cropped, not
    letterboxed) so it always matches the text column's rendered height. */
 .case-float {
-  display: flex;
+  /* Grid (not flex) so the image column reliably stretches to exactly the
+     text column's height — flexbox's cross-axis stretch with an
+     object-fit:cover child inside an auto-height sibling is unreliable;
+     grid computes the row height from content first, then stretches. */
+  display: grid;
+  grid-template-columns: 1fr 340px;
   align-items: stretch;
   gap: 40px;
 }
 
 .case-float-text {
-  flex: 1 1 0;
   min-width: 0;
 }
 
 .case-image--float {
-  flex: 0 0 340px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* The caption sits as a sibling here, not inside .case-image, so it renders
@@ -744,9 +748,9 @@ section.page-section {
 }
 
 @media (max-width: 700px) {
-  .case-float { flex-direction: column; }
-  .case-image--float { flex: 0 0 auto; width: 100%; }
-  .case-image--float img { height: auto; }
+  .case-float { grid-template-columns: 1fr; }
+  .case-image--float { width: 100%; }
+  .case-image--float .case-image img { height: auto; object-fit: unset; } /* same selector specificity as the desktop rule so this actually wins */
 }
 
 @media (max-width: 700px) {
