@@ -703,6 +703,8 @@ section.page-section {
 /* PLS Problem section chart: ~36% of the column width instead of full width. */
 .case-image--narrow {
   width: 36%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* No forced aspect-ratio/object-fit:cover — these are phone-mockup and
