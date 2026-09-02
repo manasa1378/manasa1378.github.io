@@ -820,21 +820,23 @@ section.page-section {
   .case-image-row { grid-template-columns: 1fr; }
 }
 
-/* Mia Health Solutions scenario row: image2 is the same 340px width as
-   image1, sitting in the same column starting 2/3 of the way down —
-   left full-size/uncropped (its own aspect ratio at 340px wide is 546px
-   tall, shorter than image1's 689px, so it naturally extends a bit past
-   image1's bottom instead of being force-fit to end flush with it).
-   Text fills the rest of the row's width next to it: text1 beside
-   image1's top portion, text2 beside image2. Everything is positioned
-   off image1's own rendered height (689px = 340px wide at its 492x997
-   source aspect) rather than grid-row sizing, so it holds regardless of
-   how long the text runs. 364px = 340 + 24 gap. 459px = 2/3 of 689px.
-   1005px = 459 + image2's own 546px height, where captions sit. */
+/* Mia Health Solutions scenario row: image1 (340px) and image2 sit side
+   by side. image2 is scaled down (uncropped, full image) so its height
+   is 2/3 of image1's rendered height — at its own aspect ratio (578x360)
+   that comes out to 286px wide x 459px tall. It starts 2/3 of the way
+   down image1 (459px), same as its height, coincidentally. Text fills
+   the rest of the row: text1 beside image1's top portion (spans the
+   full width, since image2 hasn't started yet up there), text2 beside
+   image2, pushed right of it. Everything is positioned off image1's own
+   rendered height (689px = 340px wide at its 492x997 source aspect)
+   rather than grid-row sizing, so it holds regardless of text length.
+   360px = 340 + 20 gap after image1. 364px = same gap for text1.
+   670px = 360 + 286 + 24 gap, where text2/image2's own caption clear it.
+   697px = 689 + 8px, where cap1 sits. 926px = 459 + 459 + 8px, cap2. */
 .mia-scenario {
   position: relative;
   margin-top: 48px;
-  min-height: 1090px;
+  min-height: 1000px;
 }
 
 .mia-scenario-img1,
@@ -848,11 +850,11 @@ section.page-section {
 }
 
 .mia-scenario-img1 { top: 0; left: 0; width: 340px; }
-.mia-scenario-img2 { top: 459px; left: 0; width: 340px; }
-.mia-scenario-cap1 { top: 1013px; left: 0; width: 340px; }
-.mia-scenario-cap2 { top: 1041px; left: 0; width: 340px; }
+.mia-scenario-img2 { top: 459px; left: 360px; width: 286px; }
+.mia-scenario-cap1 { top: 697px; left: 0; width: 340px; }
+.mia-scenario-cap2 { top: 926px; left: 360px; width: 286px; }
 .mia-scenario-text1 { top: 0; left: 364px; right: 0; }
-.mia-scenario-text2 { top: 459px; left: 364px; right: 0; }
+.mia-scenario-text2 { top: 459px; left: 670px; right: 0; }
 
 @media (max-width: 700px) {
   .mia-scenario { min-height: 0; }
