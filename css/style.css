@@ -670,9 +670,14 @@ section.page-section {
 
 /* .case-image's own margin-top (32px) is a fixed site-wide gap; scoped here
    to just the swatches image so shrinking the gap under "Colours" doesn't
-   touch the gap under "Logo" or any other .case-image on the page. */
+   touch any other .case-image on the page. */
 .rebrand-subheading--colours + .case-image {
-  margin-top: 12px;
+  margin-top: 10px;
+}
+
+/* Logo's gap to its own image matched to Colours' gap (10px) above. */
+.rebrand-subheading:not(.rebrand-subheading--colours) + .case-image {
+  margin-top: 10px;
 }
 
 .case-section h2 {
