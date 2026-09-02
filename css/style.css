@@ -664,7 +664,8 @@ section.page-section {
 }
 
 .rebrand-subheading--colours {
-  margin-top: 25px !important; /* nudges it down, closer to the colour-swatches image below */
+  margin-top: 25px !important;
+  margin-bottom: 10px !important; /* nudges it down, closer to the colour-swatches image below */
 }
 
 /* .case-image's own margin-top (32px) is a fixed site-wide gap; scoped here
