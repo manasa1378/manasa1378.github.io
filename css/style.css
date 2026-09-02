@@ -658,7 +658,7 @@ section.page-section {
    font-family carries !important, so this needs it too to actually win. */
 .rebrand-subheading {
   font-family: 'DM Serif Display' !important;
-  font-size: 42px !important;
+  font-size: clamp(18px, 2.3vw, 28px) !important;
   font-weight: 400;
   color: #043562;
 }
