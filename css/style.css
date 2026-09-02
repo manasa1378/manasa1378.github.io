@@ -707,6 +707,12 @@ section.page-section {
   margin-right: auto;
 }
 
+/* PLS Solutions: bigger gap between this one caption and the image that
+   follows it (pls-mirror-ui), scoped so no other caption/image is affected. */
+.pls-wireframes-caption + .case-image {
+  margin-top: 64px;
+}
+
 /* No forced aspect-ratio/object-fit:cover — these are phone-mockup and
    screenshot images at very different native ratios (portrait, wide chart,
    etc.); forcing them into a 16:9 box was cropping/cutting them off. Let
