@@ -700,6 +700,11 @@ section.page-section {
   background: #E4DCCB;
 }
 
+/* PLS Problem section chart: ~36% of the column width instead of full width. */
+.case-image--narrow {
+  width: 36%;
+}
+
 /* No forced aspect-ratio/object-fit:cover — these are phone-mockup and
    screenshot images at very different native ratios (portrait, wide chart,
    etc.); forcing them into a 16:9 box was cropping/cutting them off. Let
