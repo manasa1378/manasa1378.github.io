@@ -820,37 +820,47 @@ section.page-section {
   .case-image-row { grid-template-columns: 1fr; }
 }
 
-/* Mia Health Solutions: a phone-mockup image with a second, smaller image
-   cascading up over its lower half, with two text blocks beside them (one
-   per image) — image column fixed at 340px like .case-float, text column
-   fills the rest. -373px is half the rendered height of the first image at
-   340px wide (its own aspect ratio, 492x997) so the second image/text pair
-   starts right around that image's vertical midpoint. */
+/* Mia Health Solutions scenario row: image1 (340px) and image2 (143px,
+   narrower) sit side by side with a gap, image2 starting 2/3 of the way
+   down image1 and ending flush with image1's bottom. Text sits further
+   right in two blocks — one beside image1's top portion, one beside
+   image2. All of it is positioned off image1's own rendered height
+   (689px = 340px wide at its 492x997 source aspect) rather than grid-row
+   sizing, so it holds regardless of how long the text runs.
+   364px = 340 + 24 gap. 531px = 364 + 143 + 24 gap. 459px = 2/3 of 689px.
+   697px = 689 + 8px gap, where the captions sit. */
 .mia-scenario {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 40px;
+  position: relative;
   margin-top: 48px;
+  min-height: 740px;
 }
 
-.mia-scenario-img1 { grid-column: 1; grid-row: 1; }
-.mia-scenario-text1 { grid-column: 2; grid-row: 1; min-width: 0; }
-
+.mia-scenario-img1,
 .mia-scenario-img2,
+.mia-scenario-cap1,
+.mia-scenario-cap2,
+.mia-scenario-text1,
 .mia-scenario-text2 {
-  grid-column: 1;
-  grid-row: 2;
-  margin-top: -373px;
+  position: absolute;
+  margin: 0;
 }
-.mia-scenario-text2 { grid-column: 2; min-width: 0; }
+
+.mia-scenario-img1 { top: 0; left: 0; width: 340px; }
+.mia-scenario-img2 { top: 459px; left: 364px; width: 143px; }
+.mia-scenario-cap1 { top: 697px; left: 0; width: 340px; }
+.mia-scenario-cap2 { top: 697px; left: 364px; width: 143px; }
+.mia-scenario-text1 { top: 0; left: 531px; right: 0; }
+.mia-scenario-text2 { top: 459px; left: 531px; right: 0; }
 
 @media (max-width: 700px) {
-  .mia-scenario { grid-template-columns: 1fr; }
+  .mia-scenario { min-height: 0; }
   .mia-scenario-img1, .mia-scenario-img2,
+  .mia-scenario-cap1, .mia-scenario-cap2,
   .mia-scenario-text1, .mia-scenario-text2 {
-    grid-column: 1;
+    position: static;
+    width: 100%;
+    margin-top: 24px;
   }
-  .mia-scenario-img2, .mia-scenario-text2 { margin-top: 0; }
 }
 
 /* Mia Health Solutions closing row: 3 phone screens split evenly. */
