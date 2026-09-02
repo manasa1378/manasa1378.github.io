@@ -713,6 +713,12 @@ section.page-section {
   margin-top: 64px;
 }
 
+/* Mia Health Solutions: bigger gap between "Overall changes for the app"
+   and the sketch image that follows it, scoped to just this caption. */
+.mia-caption-changes + .case-image {
+  margin-top: 64px;
+}
+
 /* No forced aspect-ratio/object-fit:cover — these are phone-mockup and
    screenshot images at very different native ratios (portrait, wide chart,
    etc.); forcing them into a 16:9 box was cropping/cutting them off. Let
