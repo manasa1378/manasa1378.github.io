@@ -814,6 +814,51 @@ section.page-section {
   .case-image-row { grid-template-columns: 1fr; }
 }
 
+/* Mia Health Solutions: a phone-mockup image with a second, smaller image
+   cascading up over its lower half, with two text blocks beside them (one
+   per image) — image column fixed at 340px like .case-float, text column
+   fills the rest. -373px is half the rendered height of the first image at
+   340px wide (its own aspect ratio, 492x997) so the second image/text pair
+   starts right around that image's vertical midpoint. */
+.mia-scenario {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.mia-scenario-img1 { grid-column: 1; grid-row: 1; }
+.mia-scenario-text1 { grid-column: 2; grid-row: 1; min-width: 0; }
+
+.mia-scenario-img2,
+.mia-scenario-text2 {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: -373px;
+}
+.mia-scenario-text2 { grid-column: 2; min-width: 0; }
+
+@media (max-width: 700px) {
+  .mia-scenario { grid-template-columns: 1fr; }
+  .mia-scenario-img1, .mia-scenario-img2,
+  .mia-scenario-text1, .mia-scenario-text2 {
+    grid-column: 1;
+  }
+  .mia-scenario-img2, .mia-scenario-text2 { margin-top: 0; }
+}
+
+/* Mia Health Solutions closing row: 3 phone screens split evenly. */
+.mia-solutions-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (max-width: 700px) {
+  .mia-solutions-row { grid-template-columns: 1fr; }
+}
+
 .case-nav {
   display: flex;
   justify-content: space-between;
