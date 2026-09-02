@@ -667,6 +667,13 @@ section.page-section {
   margin-top: 25px !important; /* nudges it down, closer to the colour-swatches image below */
 }
 
+/* .case-image's own margin-top (32px) is a fixed site-wide gap; scoped here
+   to just the swatches image so shrinking the gap under "Colours" doesn't
+   touch the gap under "Logo" or any other .case-image on the page. */
+.rebrand-subheading--colours + .case-image {
+  margin-top: 12px;
+}
+
 .case-section h2 {
   font-family: var(--font-display);
   font-weight: 700;
