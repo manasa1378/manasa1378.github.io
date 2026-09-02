@@ -657,14 +657,14 @@ section.page-section {
    from the rest of the page's .case-section-label styling. The base rule's
    font-family carries !important, so this needs it too to actually win. */
 .rebrand-subheading {
-  font-family: 'DM Serif Display', serif !important;
-  font-size: 42px;
+  font-family: 'DM Serif Display' !important;
+  font-size: 42px !important;
   font-weight: 400;
   color: #043562;
 }
 
 .rebrand-subheading--colours {
-  margin-top: 15px; /* nudges it down, closer to the colour-swatches image below */
+  margin-top: 25px !important; /* nudges it down, closer to the colour-swatches image below */
 }
 
 .case-section h2 {
