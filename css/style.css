@@ -858,7 +858,7 @@ section.page-section {
 .mia-scenario-img2 {
   grid-column: 2;
   grid-row: 2;
-  margin-top: 0;
+  margin-top: -74px; /* row1's auto height ends up taller than text1 alone needs, since image1 spans into it too — this pulls image2 back up flush against that spillover */
 }
 
 .mia-scenario-cap2 {
@@ -884,6 +884,9 @@ section.page-section {
   .mia-scenario-text2 {
     grid-column: 1;
     grid-row: auto;
+  }
+  .mia-scenario-img2 {
+    margin-top: 0; /* the negative desktop offset only makes sense next to image1; stacked on mobile it needs normal spacing */
   }
 }
 
