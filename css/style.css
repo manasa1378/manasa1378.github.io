@@ -836,7 +836,7 @@ section.page-section {
    keep their normal shared styles, nothing global changes. */
 .mia-scenario {
   display: grid;
-  grid-template-columns: minmax(200px, 340px) minmax(140px, 240px) 1fr;
+  grid-template-columns: minmax(200px, 340px) minmax(140px, 340px) 1fr;
   /* row1 sized only by text1's own content; row2 is the flexible track
      that absorbs whatever height image1 (spanning both rows) still
      needs beyond that — this is what keeps image2 dynamically anchored
