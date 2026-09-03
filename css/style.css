@@ -833,8 +833,14 @@ section.page-section {
    Scoped entirely under .mia-scenario — .case-image/.case-image-caption
    keep their normal shared styles, nothing global changes. */
 .mia-scenario {
+  position: relative; /* containing block for the absolutely-positioned text2 below */
   display: grid;
-  grid-template-columns: minmax(200px, 340px) minmax(140px, 340px) 1fr;
+  /* col3 has its own floor (180px) so the text never gets squeezed to
+     almost nothing — without it, col1/col2 held their max widths right
+     up until the 700px mobile breakpoint, leaving col3 barely any
+     room on narrower desktop/tablet widths. Grid shrinks col1/col2
+     toward their own minimums first to make room for it. */
+  grid-template-columns: minmax(200px, 340px) minmax(140px, 340px) minmax(180px, 1fr);
   /* row1 sized only by text1's own content; row2 is the flexible track
      that absorbs whatever height image1 (spanning both rows) still
      needs beyond that — this is what keeps image2 dynamically anchored
@@ -894,9 +900,23 @@ section.page-section {
   margin-top: 12px; /* matches the gap every other caption on the page uses */
 }
 
+/* Absolutely positioned within row2's grid area (grid-row/-column still
+   place it there) instead of flowing normally in it. A normal grid item
+   here would count toward row2's auto height alongside image2 — on
+   narrower screens the text column gets tighter and wraps to more
+   lines, which was inflating row2 well past image1's actual height and
+   stretch-zooming image2 (via object-fit:cover) to match. Taking text2
+   out of the sizing calculation means row2 — and image2 — track image1
+   alone at any width; text2 just free-flows down from the top of its
+   area and, if it ever runs longer than the image, overflows past it
+   rather than dragging the image out of shape. */
 .mia-scenario-text2 {
   grid-column: 3;
   grid-row: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   min-width: 0;
 }
 
@@ -914,6 +934,9 @@ section.page-section {
   .mia-scenario-col2 {
     margin-top: 0; /* the negative desktop offset only makes sense next to image1; stacked on mobile it needs normal spacing */
     margin-left: 0;
+  }
+  .mia-scenario-text2 {
+    position: static; /* stacked normally on mobile, not overlaid */
   }
 }
 
