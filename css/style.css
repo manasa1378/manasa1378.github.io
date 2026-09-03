@@ -438,14 +438,12 @@ section.page-section {
   margin: 0 0 24px;
 }
 
-/* The floated photo's bottom edge can land mid-paragraph, which forces
-   whatever line is at that height to wrap early against the shrinking
-   float width (short line, ragged, mid-sentence) even though the text
-   below has full width again. Clearing the float before the last
-   paragraph keeps that one always full-width and glitch-free. */
-.about-text p:last-child {
-  clear: both;
-}
+/* No clear:both here on purpose: clearing the last paragraph kept it
+   glitch-free but pushed it down to the photo's full height, breaking
+   the even 24px gap between paragraphs (a much bigger gap before the
+   3rd than before the 2nd). Letting it wrap like the others keeps
+   spacing consistent — it may start narrower alongside the photo and
+   widen out once past it, on some screens. */
 
 .about-text em { font-style: italic; }
 
@@ -466,7 +464,7 @@ section.page-section {
 
 .about-fulltext {
   clear: both; /* starts below the floated photo instead of wrapping around it too */
-  margin-top: 48px;
+  margin-top: 24px; /* matches the gap between every other paragraph in this section */
   font-size: clamp(18px, 2.2vw, 28px);
 }
 
