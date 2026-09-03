@@ -838,7 +838,7 @@ section.page-section {
   display: grid;
   grid-template-columns: minmax(200px, 340px) minmax(140px, 240px) 1fr;
   align-items: start;
-  column-gap: 40px;
+  column-gap: 10px;
   row-gap: 24px;
   margin-top: 48px;
 }
@@ -861,8 +861,6 @@ section.page-section {
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  margin-top: -74px; /* row1's auto height ends up taller than text1 alone needs, since image1 spans into it too — this pulls image2 back up flush against that spillover */
-  margin-left: -16px; /* nudges image2 a bit closer to image1 */
 }
 
 .mia-scenario-col1 .case-image,
